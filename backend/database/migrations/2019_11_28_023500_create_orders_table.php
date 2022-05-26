@@ -17,16 +17,17 @@ class CreateOrdersTable extends Migration
             $table->bigIncrements('id');
             $table->date('date_order');
             $table->unsignedBigInteger('buyer_id');
-            $table->unsignedBigInteger('statusorder_id');
+            // $table->unsignedBigInteger('statusorder_id');
+            $table->enum("status", ["pending payment", "process", "completed", "deleted"]);
             $table->unsignedInteger("province_id");
             $table->unsignedInteger("city_id");
             $table->string('address');
             $table->string('image_payment');
-            $table->date('date_shipped');
+            $table->integer('total_price');
             $table->integer('buyer_price');
 
             $table->foreign('buyer_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('statusorder_id')->references('id')->on('statusorders')->onDelete('cascade');
+            // $table->foreign('statusorder_id')->references('id')->on('statusorders')->onDelete('cascade');
             $table->foreign('province_id')->references('id')->on('provinces')->onDelete('cascade');
             $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
             $table->timestamps();

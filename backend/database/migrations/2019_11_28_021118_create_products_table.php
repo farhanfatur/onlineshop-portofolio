@@ -15,20 +15,19 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('name_slug');
-            $table->string('code');
-            $table->integer('stock');
-            $table->unsignedBigInteger('category_id');
-            $table->text('description');
-            $table->string('image');
+            $table->string('name')->nullable();
+            $table->string('name_slug')->nullable();
+            $table->string('code')->nullable();
+            $table->integer('stock')->nullable();
+            $table->unsignedBigInteger('catalog_product_id');
+            $table->text('description')->nullable();
+            $table->string('image')->nullable();
             $table->unsignedBigInteger('seller_id');
-            $table->integer('price');
+            $table->integer('price')->nullable();
+            $table->integer('point')->nullable();
             $table->enum('is_active', ['1', '0']);
             $table->enum('is_sold', ['1', '0']);
-            $table->enum('is_delete', ['1', '0']);
-
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreign('catalog_product_id')->references('id')->on('catalog_products')->onDelete('cascade');
             $table->foreign('seller_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
             
