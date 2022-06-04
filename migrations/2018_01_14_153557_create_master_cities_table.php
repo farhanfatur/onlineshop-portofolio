@@ -21,7 +21,7 @@ class CreateMasterCitiesTable extends Migration
             $table->string("city_name");
             $table->integer("postal_code");
 
-            $table->foreign("master_province_id")->references("id")->on("provinces")->onDelete("cascade");
+            $table->foreign("master_province_id")->references("id")->on("master_provinces")->onDelete("cascade");
             $table->timestamps();
         });
     }
