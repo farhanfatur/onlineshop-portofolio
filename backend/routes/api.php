@@ -17,19 +17,26 @@ use Illuminate\Support\Facades\Route;
 /*
  TODO: make api for authentication
  - auth -> ok
- - registration -> on todo
- - logout
- - getuser
- - expired
+ - registration -> ok
+ - logout -> ok
+ - getuser -> ontodo
+ - expired -> ok
  - update
  - delete
  TODO: creata UI administration
  TODO: make api for several module such as roles, catalog, products, order, payment, banks, orders
 */
 Route::prefix("v1")->group(function() {
-    Route::post("/auth", "AuthController@Authenticate");
-    Route::post("/save", "AuthController@Save");
-    Route::put("/save", "AuthController@Save");
+    Route::prefix('auth')->group(function() {
+        Route::post("/", "AuthController@Authenticate");
+        Route::post("/save", "AuthController@Save");
+        Route::put("/save", "AuthController@Save");
+        Route::post("/logout", "AuthController@Logout")->middleware('auth:sanctum');
+    });
+
+    Route::prefix('user')->group(function() {
+
+    });
 });
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

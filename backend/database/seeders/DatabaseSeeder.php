@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Database\Seeders\CitySeeder;
+use Database\Seeders\ProvinceSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,7 +15,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(UsersTableSeeder::class);
+        // $this->call(UsersTableSeeder::class);
+        // $this->call(SellerSeeder::class);
+        // $this->call(ProvinceSeeder::class);
+        $this->call(CitySeeder::class);
         // \App\Models\User::factory(10)->create();
     }
 }
